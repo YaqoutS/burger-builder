@@ -1,6 +1,6 @@
 import { ReactElement, ReactNode } from "react";
 import classes from "./Burger.module.css";
-import BurgerIngredients from "./BurgerIngredients";
+import BurgerIngredients from "../BurgerIngredients/BurgerIngredients";
 
 type Props = {
   ingredients: { [key: string]: number };

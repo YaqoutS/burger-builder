@@ -1,4 +1,4 @@
-import BuildControl from "./BuildControl";
+import BuildControl from "./BuildControl/BuildControl";
 import classes from "./BuildControls.module.css";
 
 type MyObject = {
@@ -11,6 +11,7 @@ type Props = {
   disabledInfo: MyObject;
   price: number;
   purchasable: boolean;
+  onPurchase: () => void;
 };
 
 const controls = [
@@ -23,7 +24,7 @@ const controls = [
 export default function BuildControls(props: Props) {
   return (
     <div className={classes.BuildControls}>
-      <p>
+      <p style={{ margin: "15px 0" }}>
         Current Price: <strong>{props.price.toFixed(2)}</strong>
       </p>
       {controls.map((ctrl) => (
@@ -35,7 +36,11 @@ export default function BuildControls(props: Props) {
           disabled={props.disabledInfo[ctrl.type] === 1 ? true : false}
         />
       ))}
-      <button className={classes.OrderButton} disabled={!props.purchasable}>
+      <button
+        className={classes.OrderButton}
+        disabled={!props.purchasable}
+        onClick={props.onPurchase}
+      >
         ORDER NOW
       </button>
     </div>

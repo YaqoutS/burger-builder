@@ -1,7 +1,9 @@
 "use client";
 import { useState } from "react";
-import Burger from "./Burger";
-import BuildControls from "./BuildControls";
+import Burger from "./Burger/Burger";
+import BuildControls from "./BuildControls/BuildControls";
+import Modal from "../UI/Modal/Modal";
+import OrderSummary from "./OrderSummary/OrderSummary";
 
 type MyObject = {
   [key: string]: number;
@@ -25,6 +27,8 @@ export default function BurgerBuilder() {
   const [totalPrice, setTotalPrice] = useState(4);
 
   const [purchasable, setPurchasable] = useState(false);
+
+  const [purchasing, setPurchasing] = useState(false);
 
   const updatePurchasableState = (ingredients: MyObject) => {
     const sum = Object.keys(ingredients)
@@ -69,8 +73,28 @@ export default function BurgerBuilder() {
     disabledInfo[key] = disabledInfo[key] <= 0 ? 1 : 0;
   }
 
+  const purchaseHandler = () => {
+    setPurchasing(true);
+  };
+
+  const purchaseCancelHandler = () => {
+    setPurchasing(false);
+  };
+
+  const purchaseContinueHandler = () => {
+    alert("You continue");
+  };
+
   return (
     <>
+      <Modal show={purchasing} onModalClose={purchaseCancelHandler}>
+        <OrderSummary
+          ingredients={ingredients}
+          price={totalPrice}
+          onPurchaseCansle={purchaseCancelHandler}
+          onPurchaseContinue={purchaseContinueHandler}
+        ></OrderSummary>
+      </Modal>
       <Burger ingredients={ingredients} />
       <BuildControls
         onIngredientAdded={addIngredientHandler}
@@ -78,6 +102,7 @@ export default function BurgerBuilder() {
         disabledInfo={disabledInfo}
         price={totalPrice}
         purchasable={purchasable}
+        onPurchase={purchaseHandler}
       />
     </>
   );
