@@ -7,7 +7,7 @@ type MyObject = {
 type Props = {
   ingredients: MyObject;
   price: number;
-  onPurchaseCansle: () => void;
+  onPurchaseCancle: () => void;
   onPurchaseContinue: () => void;
 };
 
@@ -32,7 +32,7 @@ export default function OrderSummary(props: Props) {
         <strong>Total price: {props.price.toFixed(2)}</strong>
       </p>
       <p style={{ padding: "15px 0 0" }}>Continue to Checkout?</p>
-      <Button btnType="Danger" onClick={props.onPurchaseCansle}>
+      <Button btnType="Danger" onClick={props.onPurchaseCancle}>
         CANCEL
       </Button>
       <Button btnType="Success" onClick={props.onPurchaseContinue}>

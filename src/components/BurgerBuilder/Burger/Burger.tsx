@@ -1,4 +1,3 @@
-import { ReactElement, ReactNode } from "react";
 import classes from "./Burger.module.css";
 import BurgerIngredients from "../BurgerIngredients/BurgerIngredients";
 
@@ -12,7 +11,7 @@ export default function Burger(props: Props) {
   )
     .map((key) => {
       return [...Array(props.ingredients[key])].map((_, i) => {
-        console.log(key);
+        // console.log(key);
         return <BurgerIngredients key={key + i} type={key} />;
       });
     })

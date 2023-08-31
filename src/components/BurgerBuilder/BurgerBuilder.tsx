@@ -91,7 +91,7 @@ export default function BurgerBuilder() {
         <OrderSummary
           ingredients={ingredients}
           price={totalPrice}
-          onPurchaseCansle={purchaseCancelHandler}
+          onPurchaseCancle={purchaseCancelHandler}
           onPurchaseContinue={purchaseContinueHandler}
         ></OrderSummary>
       </Modal>
